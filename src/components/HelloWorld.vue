@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1 @click=toAbout>{{ msg }}</h1>
-    <p>
+    <p @click=httpGet>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: 'HelloWorld',
   data() {
@@ -42,8 +43,14 @@ export default {
     msg: String
   },
   methods: {
+    ...mapActions({
+      vxHttpGet: "getRequest"
+    }),
+    async httpGet() {
+      let result = await this.vxHttpGet({url: "http://localhost:8081", data: {'ip': 'myip'}})
+      console.log(result)
+    },
     toAbout() {
-      console.log(1)
       this.$router.push({ name: 'about', params: { userId: '123' }})
     }
   },
