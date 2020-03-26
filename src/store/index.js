@@ -16,7 +16,7 @@ export default new Vuex.Store({
         return await httpGet(data.url, data.data)
       }
       catch (err) {
-        console.log(err)
+        // console.log(err)
       }
     }
   },
