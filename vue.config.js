@@ -4,5 +4,5 @@ module.exports = {
         disableHostCheck: true,
         port: 8080
     },
-    publicPath: "/"
+    publicPath: process.env.NODE_ENV === "production" ? "/home" : "/"
 }
